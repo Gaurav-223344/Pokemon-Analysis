@@ -84,7 +84,7 @@ if user_menu == 'Overall Analysis':
 
 
 def type_input_plots(dataset):
-    
+    st.header("Best Pokemon in each skill")
     col1,col2,col3 = st.columns(3)
     with col1:
         fig = af.Top_five(dataset,'Total')
@@ -125,12 +125,7 @@ if user_menu == 'Type wise Analysis':
     )
 
     if type_input == 'All Types':
-        type1_lst = af.type1list(df)
-        tp_input1 = st.selectbox('Select Type1',type1_lst)
-        type2_lst = af.type2list(df,tp_input1)
-        tp_input2 = st.selectbox('Select Type2',type2_lst)
-        df_all_T = af.All_Types(df,tp_input1,tp_input2)
-        st.header("Top 5 Pokemon with respective skills")
+        df_all_T = af.All_Types(df)
         type_input_plots(df_all_T)
         st.markdown("""---""")
         st.header("Detail Dataframe")
@@ -138,7 +133,7 @@ if user_menu == 'Type wise Analysis':
 
     if type_input == 'Pure Type':
         type1_lst = af.type1list(df)
-        tp_input1 = st.selectbox('Select Type',type1_lst)
+        tp_input1 = st.sidebar.selectbox('Select Type',type1_lst)
         Pure_Type_df = af.Pure_Type(df,tp_input1)
         type_input_plots(Pure_Type_df)
         st.markdown("""---""")
@@ -147,9 +142,9 @@ if user_menu == 'Type wise Analysis':
 
     if type_input == 'Hybrid Type':
         type1_lst = af.type1list(df)
-        tp_input1 = st.selectbox('Select Type1',type1_lst)
+        tp_input1 = st.sidebar.selectbox('Select Type1',type1_lst)
         type2_lst = af.type2list(df,tp_input1)
-        tp_input2 = st.selectbox('Select Type2',type2_lst)
+        tp_input2 = st.sidebar.selectbox('Select Type2',type2_lst)
         Hybrid_Type_df = af.Hybrid_Type(df,tp_input1,tp_input2) 
         type_input_plots(Hybrid_Type_df)
         st.markdown("""---""")
